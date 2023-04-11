@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Modal } from "./Modal";
 
 
 export const ContactCard = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
+
+	// Handles open and close modal to edit contact
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => {
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
 	return (
 		<li className="list-group-item">
@@ -16,9 +28,10 @@ export const ContactCard = props => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn">
-							<i className="fas fa-pencil-alt mr-3" />
+						<button className="btn" onClick={handleShowModal}>
+							<i className="fas fa-pencil-alt mr-3"/>
 						</button>
+						<Modal show={showModal} onClose={handleCloseModal} />
 						<button className="btn" onClick={() => props.onDelete()}>
 							<i className="fas fa-trash-alt" />
 						</button>
@@ -56,11 +69,11 @@ export const ContactCard = props => {
 ContactCard.propTypes = {
 	history: PropTypes.object,
 	onDelete: PropTypes.func,
-    name:PropTypes.string,
-    phone:PropTypes.string,
-    address:PropTypes.string,
-    email:PropTypes.string,
-    img:PropTypes.string
+	name: PropTypes.string,
+	phone: PropTypes.string,
+	address: PropTypes.string,
+	email: PropTypes.string,
+	img: PropTypes.string
 };
 
 /**

@@ -26,7 +26,28 @@ export const Modal = props => {
 						)}
 					</div>
 					<div className="modal-body">
-						<p>Warning: unknown consequences after this point... Kidding!</p>
+						{/* <p>Warning: unknown consequences after this point... Kidding!</p> */}
+						<form>
+							<div class="mb-3">
+								<label for="exampleInputEmail1" class="form-label">Full Name</label>
+								<input type="text" class="form-control" id="fullName" placeholder="Full Name" />
+								
+							</div>
+							<div class="mb-3">
+								<label for="exampleInputEmail1" class="form-label">Email address</label>
+								<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@email.com"/>
+									<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+							</div>
+							<div class="mb-3">
+								<label for="exampleInputEmail1" class="form-label">Phone Number</label>
+								<input type="text" class="form-control" id="phoneNumber" placeholder="123456789" />
+									
+							</div><div class="mb-3">
+								<label for="exampleInputEmail1" class="form-label">Address</label>
+								<input type="text" class="form-control" id="Address" placeholder="Address" />
+								
+							</div>
+						</form>
 					</div>
 					<div className="modal-footer">
 						<button type="button" className="btn btn-primary">
