@@ -1,3 +1,8 @@
 /* 
     General Styles
 */
+.contact-list{
+    max-width: 900px;
+    float: left;
+    margin:auto
+}
