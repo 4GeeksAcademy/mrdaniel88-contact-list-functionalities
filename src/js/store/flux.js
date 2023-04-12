@@ -1,24 +1,36 @@
 import rigoImage from "../../img/rigo-baby.jpg";
+import { useState } from "react";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contacts: [
-				{name:"Daniel", address:"Colombia", email:"daniel@daniel.com", phone:"123456789", img:rigoImage},
-				{name:"Alejandro", address:"Colombia", email:"daniel@daniel.com", phone:"123456789", img:rigoImage},
-				{name:"Ricardo", address:"Colombia", email:"daniel@daniel.com", phone:"123456789", img:rigoImage},
-				{name:"Andres", address:"Colombia", email:"daniel@daniel.com", phone:"123456789", img:rigoImage}
+				{ name: "Daniel", address: "Colombia", email: "daniel@daniel.com", phone: "123456789", img: rigoImage },
+				{ name: "Alejandro", address: "Colombia", email: "daniel@daniel.com", phone: "123456789", img: rigoImage },
+				{ name: "Ricardo", address: "Colombia", email: "daniel@daniel.com", phone: "123456789", img: rigoImage },
+				{ name: "Andres", address: "Colombia", email: "daniel@daniel.com", phone: "123456789", img: rigoImage }
 			]
 		},
 		actions: {
-			addContact:(contact) => {
-				let store=getStore()
-				let newContacts=[...store.contacts, contact]
-				setStore({contacts:newContacts})
+			addContact: (contact) => {
+				let store = getStore()
+				let newContacts = [...store.contacts, contact]
+				setStore({ contacts: newContacts })
 			},
-			delContact:(index) => {
+			delContact: (index) => {
 				let newContacts = [...getStore().contacts]
-				newContacts.splice(index,1)
-				setStore({contacts:newContacts})
+				newContacts.splice(index, 1)
+				setStore({ contacts: newContacts })
+			},
+			editContact: (index, obj) => {
+				console.log(index)
+				console.log(obj)
+				let store = getStore()
+				let arrTemp = store.contacts.slice();
+
+				arrTemp[index] = obj;
+				setStore({ ...store, contacts: arrTemp });
+
+
 			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {

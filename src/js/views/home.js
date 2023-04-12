@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { ContactCard } from "../component/ContactCard";
@@ -8,6 +8,7 @@ export const Home = () => {
 
 	const { store, actions } = useContext(Context)
 	const { contacts } = store
+
 
 	return (
 
@@ -21,7 +22,9 @@ export const Home = () => {
 						address={contact.address}
 						email={contact.email}
 						phone={contact.phone}
-						onDelete={()=>actions.delContact(index)}
+						onDelete={() => actions.delContact(index)}
+						// edit={() => actions.editContact(index)}
+						index={index}
 						key={index}
 					/>)}
 			</div>

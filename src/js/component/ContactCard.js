@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Modal } from "./Modal";
+import propTypes from "prop-types";
 
 
 export const ContactCard = props => {
@@ -28,10 +29,11 @@ export const ContactCard = props => {
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-						<button className="btn" onClick={handleShowModal}>
+					<button className="btn" data-bs-toggle="modal" data-bs-target="#editContact" /*onClick={handleShowModal}*/>
+						{/* <button className="btn" onClick={() => props.openModal()}> */}
 							<i className="fas fa-pencil-alt mr-3"/>
 						</button>
-						<Modal show={showModal} onClose={handleCloseModal} />
+						<Modal index={props.index} />
 						<button className="btn" onClick={() => props.onDelete()}>
 							<i className="fas fa-trash-alt" />
 						</button>
@@ -73,7 +75,10 @@ ContactCard.propTypes = {
 	phone: PropTypes.string,
 	address: PropTypes.string,
 	email: PropTypes.string,
-	img: PropTypes.string
+	img: PropTypes.string,
+	edit: PropTypes.func,
+	index: PropTypes.string,
+	key: PropTypes.string
 };
 
 /**
