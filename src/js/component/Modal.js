@@ -12,9 +12,9 @@ export const Modal = props => {
 
 	const { store, actions } = useContext(Context)
 	const [name, setName] = useState(store.contacts[props.index]?.name)
-	const [email, setEmail] = useState()
-	const [phone, setPhone] = useState()
-	const [address, setAddress] = useState()
+	const [email, setEmail] = useState(store.contacts[props.index]?.email)
+	const [phone, setPhone] = useState(store.contacts[props.index]?.phone)
+	const [address, setAddress] = useState(store.contacts[props.index]?.address)
 
 
 	return (
@@ -22,7 +22,7 @@ export const Modal = props => {
 			<div className="modal-dialog" role="document">
 				<div className="modal-content">
 					<div className="modal-header">
-						<h5 className="modal-title">Are you sure?</h5>
+						<h5 className="modal-title">{props.index}</h5>
 						{props.onClose ? (
 							<button
 								onClick={() => props.onClose()}
@@ -97,7 +97,7 @@ Modal.propTypes = {
 	onClose: PropTypes.func,
 	show: PropTypes.bool,
 	edit: PropTypes.func,
-	index: PropTypes.string
+	index: PropTypes.number
 };
 
 /**

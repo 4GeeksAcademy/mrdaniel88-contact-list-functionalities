@@ -25,7 +25,7 @@ export const Home = () => {
 						onDelete={() => actions.delContact(index)}
 						// edit={() => actions.editContact(index)}
 						index={index}
-						key={index}
+						// key={index}
 					/>)}
 			</div>
 		</div>

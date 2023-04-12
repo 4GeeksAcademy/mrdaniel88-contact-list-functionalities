@@ -20,7 +20,7 @@ export const ContactCard = props => {
     const handleCloseModal = () => {
         setShowModal(false);
     };
-
+console.log(props.index);
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
@@ -60,6 +60,7 @@ export const ContactCard = props => {
 					<span className="text-muted small text-truncate">{props.email}</span>
 				</div>
 			</div>
+			
 		</li>
 	);
 };
@@ -77,7 +78,7 @@ ContactCard.propTypes = {
 	email: PropTypes.string,
 	img: PropTypes.string,
 	edit: PropTypes.func,
-	index: PropTypes.string,
+	index: PropTypes.number,
 	key: PropTypes.string
 };
 
