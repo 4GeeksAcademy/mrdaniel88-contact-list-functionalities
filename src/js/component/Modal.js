@@ -47,7 +47,6 @@ export const Modal = props => {
 		if (props.index == -1) {
 			//Crear nuevo contacto
 			actions.addContact(newContact)
-			let updateContact = store.contacts[props.index]
 			setAddress("")
 			setPhone("")
 			setEmail("")
