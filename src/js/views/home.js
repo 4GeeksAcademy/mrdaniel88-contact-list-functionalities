@@ -3,6 +3,7 @@ import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { ContactCard } from "../component/ContactCard";
 import { Context } from "../store/appContext";
+import { Modal } from "../component/Modal";
 
 export const Home = () => {
 
@@ -16,6 +17,7 @@ export const Home = () => {
 			<h1>Hello Rigo!</h1>
 			<div className="list-group contact-list">
 				{contacts.map((contact, index) =>
+					<div key={index}>
 					<ContactCard
 						img={contact.img}
 						name={contact.name}
@@ -25,8 +27,11 @@ export const Home = () => {
 						onDelete={() => actions.delContact(index)}
 						// edit={() => actions.editContact(index)}
 						index={index}
-						// key={index}
-					/>)}
+						
+					/>
+					<Modal index={index} />
+					</div>
+					)}
 			</div>
 		</div>
 	)

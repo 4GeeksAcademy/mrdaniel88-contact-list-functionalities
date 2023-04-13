@@ -10,19 +10,32 @@ export const Modal = props => {
 		//initialize state here
 	});
 
+useEffect(()=>{
+	if(props.index == -1){
+		//Crear nuevo contacto
+	}
+	else if (props.index >= 0) {
+		// Editar contacto
+	}
+	else {
+		// Indice invalido
+	}
+},[])
+
 	const { store, actions } = useContext(Context)
 	const [name, setName] = useState(store.contacts[props.index]?.name)
 	const [email, setEmail] = useState(store.contacts[props.index]?.email)
 	const [phone, setPhone] = useState(store.contacts[props.index]?.phone)
 	const [address, setAddress] = useState(store.contacts[props.index]?.address)
+	const [img, setImg] = useState(store.contacts[props.index]?.img)
 
 
 	return (
-		<div className="modal" id="editContact" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
+		<div className="modal fade" id={"editModal-"+props.index} tabindex="-1" aria-labelledby={"exampleModalLabel-"+props.index} aria-hidden="true">
 			<div className="modal-dialog" role="document">
 				<div className="modal-content">
 					<div className="modal-header">
-						<h5 className="modal-title">{props.index}</h5>
+						<h5 className="modal-title">Contacto {props.index}</h5>
 						{props.onClose ? (
 							<button
 								onClick={() => props.onClose()}
@@ -33,13 +46,11 @@ export const Modal = props => {
 								<span aria-hidden="true">&times;</span>
 							</button>
 						) : (
-							""
+							<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						)}
 					</div>
 					<div className="modal-body">
-						{/* <p>Warning: unknown consequences after this point... Kidding!</p> */}
 						<form>
-							{/* {contacts.map((contact, index) => */}
 							<>
 								<div class="mb-3">
 									<label for="exampleInputEmail1" class="form-label">Full Name</label>
@@ -70,18 +81,16 @@ export const Modal = props => {
 										onChange={(e) => setAddress(e.target.value)} />
 								</div>
 							</>
-							{/* )} */}
-
 						</form>
 					</div>
 					<div className="modal-footer">
 						<button type="button" className="btn btn-primary"
-							onClick={() => actions.editContact(props.index, {name: name, address: address, email: email, phone: phone})}>
-							Oh no!
+							onClick={() => actions.editContact(props.index, {name: name, address: address, email: email, phone: phone, img: img})}>
+							Save
 						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
+						{/* <button type="button" className="btn btn-secondary" data-dismiss="modal">
 							Do it!
-						</button>
+						</button> */}
 					</div>
 				</div>
 			</div>

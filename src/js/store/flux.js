@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				console.log(index)
 				console.log(obj)
 				let store = getStore()
-				let arrTemp = store.contacts.slice();
+				let arrTemp = [...store.contacts];
 
 				arrTemp[index] = obj;
 				setStore({ ...store, contacts: arrTemp });

@@ -20,7 +20,7 @@ export const ContactCard = props => {
     const handleCloseModal = () => {
         setShowModal(false);
     };
-console.log(props.index);
+// console.log(props.index);
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
@@ -29,7 +29,7 @@ console.log(props.index);
 				</div>
 				<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 					<div className=" float-right">
-					<button className="btn" data-bs-toggle="modal" data-bs-target="#editContact" /*onClick={handleShowModal}*/>
+					<button type="button" className="btn" data-bs-toggle="modal" data-bs-target={"#editModal-"+props.index} >
 						{/* <button className="btn" onClick={() => props.openModal()}> */}
 							<i className="fas fa-pencil-alt mr-3"/>
 						</button>
