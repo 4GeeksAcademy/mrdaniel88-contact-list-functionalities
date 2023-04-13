@@ -1,37 +1,69 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { ContactCard } from "../component/ContactCard";
 import { Context } from "../store/appContext";
-import propTypes from "prop-types";
+
 
 export const Modal = props => {
-	const [state, setState] = useState({
-		//initialize state here
-	});
-
-useEffect(()=>{
-	if(props.index == -1){
-		//Crear nuevo contacto
-	}
-	else if (props.index >= 0) {
-		// Editar contacto
-	}
-	else {
-		// Indice invalido
-	}
-},[])
 
 	const { store, actions } = useContext(Context)
-	const [name, setName] = useState(store.contacts[props.index]?.name)
-	const [email, setEmail] = useState(store.contacts[props.index]?.email)
-	const [phone, setPhone] = useState(store.contacts[props.index]?.phone)
-	const [address, setAddress] = useState(store.contacts[props.index]?.address)
+	// const [name, setName] = useState(store.contacts[props.index]?.name)
+	// const [email, setEmail] = useState(store.contacts[props.index]?.email)
+	// const [phone, setPhone] = useState(store.contacts[props.index]?.phone)
+	// const [address, setAddress] = useState(store.contacts[props.index]?.address)
+	// const [img, setImg] = useState(store.contacts[props.index]?.img)
+
+	const [name, setName] = useState("")
+	const [email, setEmail] = useState("")
+	const [phone, setPhone] = useState("")
+	const [address, setAddress] = useState("")
 	const [img, setImg] = useState(store.contacts[props.index]?.img)
 
+	useEffect(() => {
+		if (props.index == -1) {
+			//Crear nuevo contacto
+		}
+		else if (props.index >= 0) {
+			// Editar contacto
+			let updateContact = store.contacts[props.index]
+			setAddress(updateContact.address)
+			setPhone(updateContact.phone)
+			setEmail(updateContact.email)
+			setName(updateContact.name)
+		}
+		else {
+			// Indice invalido
+		}
+	}, [])
+
+
+	function guardar() {
+		let newContact ={
+			name:name,
+			email:email,
+			phone:address,
+			address:address
+		}
+		if (props.index == -1) {
+			//Crear nuevo contacto
+			actions.addContact(newContact)
+			let updateContact = store.contacts[props.index]
+			setAddress("")
+			setPhone("")
+			setEmail("")
+			setName("")
+		}
+		else if (props.index >= 0) {
+			// Editar contacto
+			actions.editContact(props.index, newContact)
+		}
+		else {
+			// Indice invalido
+		}
+	}
 
 	return (
-		<div className="modal fade" id={"editModal-"+props.index} tabindex="-1" aria-labelledby={"exampleModalLabel-"+props.index} aria-hidden="true">
+		<div className="modal fade" id={"editModal-" + props.index} tabIndex="-1" aria-labelledby={"exampleModalLabel-" + props.index} aria-hidden="true">
 			<div className="modal-dialog" role="document">
 				<div className="modal-content">
 					<div className="modal-header">
@@ -52,31 +84,31 @@ useEffect(()=>{
 					<div className="modal-body">
 						<form>
 							<>
-								<div class="mb-3">
-									<label for="exampleInputEmail1" class="form-label">Full Name</label>
-									<input type="text" class="form-control" id="fullName" placeholder="Full Name"
+								<div className="mb-3">
+									<label htmlFor="nameInput" className="form-label">Full Name</label>
+									<input type="text" className="form-control" id="nameInput" placeholder="Full Name"
 										value={name}
 										onChange={(e) => setName(e.target.value)} />
 								</div>
 
-								<div class="mb-3">
-									<label for="exampleInputEmail1" class="form-label">Email address</label>
-									<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email@email.com"
+								<div className="mb-3">
+									<label htmlFor="emailInput" className="form-label">Email address</label>
+									<input type="email" className="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="email@email.com"
 										value={email}
 										onChange={(e) => setEmail(e.target.value)} />
-									<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+									<div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
 								</div>
 
-								<div class="mb-3">
-									<label for="exampleInputEmail1" class="form-label">Phone Number</label>
-									<input type="text" class="form-control" id="phoneNumber" placeholder="123456789"
+								<div className="mb-3">
+									<label htmlFor="phoneInput" className="form-label">Phone Number</label>
+									<input type="text" className="form-control" id="phoneInput" placeholder="123456789"
 										value={phone}
 										onChange={(e) => setPhone(e.target.value)} />
 								</div>
 
-								<div class="mb-3">
-									<label for="exampleInputEmail1" class="form-label">Address</label>
-									<input type="text" class="form-control" id="Address" placeholder="Address"
+								<div className="mb-3">
+									<label htmlFor="addressInput" className="form-label">Address</label>
+									<input type="text" className="form-control" id="addressInput" placeholder="Address"
 										value={address}
 										onChange={(e) => setAddress(e.target.value)} />
 								</div>
@@ -84,13 +116,10 @@ useEffect(()=>{
 						</form>
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-primary"
-							onClick={() => actions.editContact(props.index, {name: name, address: address, email: email, phone: phone, img: img})}>
+						<button data-bs-dismiss="modal" data-bs-target={"editModal-" + props.index} type="button" className="btn btn-primary"
+							onClick={guardar}>
 							Save
 						</button>
-						{/* <button type="button" className="btn btn-secondary" data-dismiss="modal">
-							Do it!
-						</button> */}
 					</div>
 				</div>
 			</div>
