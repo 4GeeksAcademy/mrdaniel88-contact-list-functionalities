@@ -13,8 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			addContact: (contact) => {
 				let store = getStore()
-				let newContacts = [...store.contacts, contact]
-				setStore({ contacts: newContacts })
+				let newContacts = [...store.contacts, {...contact,img:rigoImage}]
+				setStore({ contacts: newContacts})
 			},
 			delContact: (index) => {
 				let newContacts = [...getStore().contacts]
@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let store = getStore()
 				let arrTemp = [...store.contacts];
 
-				arrTemp[index] = obj;
+				arrTemp[index] = {...obj, img:rigoImage};
 				setStore({ ...store, contacts: arrTemp });
 
 

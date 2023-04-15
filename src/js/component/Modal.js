@@ -30,6 +30,7 @@ export const Modal = props => {
 			setPhone(updateContact.phone)
 			setEmail(updateContact.email)
 			setName(updateContact.name)
+			
 		}
 		else {
 			// Indice invalido
@@ -42,7 +43,8 @@ export const Modal = props => {
 			name:name,
 			email:email,
 			phone:address,
-			address:address
+			address:address,
+			
 		}
 		if (props.index == -1) {
 			//Crear nuevo contacto
