@@ -13,7 +13,7 @@ export const Modal = props => {
 	// const [address, setAddress] = useState(store.contacts[props.index]?.address)
 	// const [img, setImg] = useState(store.contacts[props.index]?.img)
 
-	const [name, setName] = useState("")
+	const [full_name, setName] = useState("")
 	const [email, setEmail] = useState("")
 	const [phone, setPhone] = useState("")
 	const [address, setAddress] = useState("")
@@ -25,11 +25,11 @@ export const Modal = props => {
 		}
 		else if (props.index >= 0) {
 			// Editar contacto
-			let updateContact = store.contacts[props.index]
+			let updateContact = store.contacts.find(contact=>contact.id==props.index)
 			setAddress(updateContact.address)
 			setPhone(updateContact.phone)
 			setEmail(updateContact.email)
-			setName(updateContact.name)
+			setName(updateContact.full_name)
 			
 		}
 		else {
@@ -40,7 +40,7 @@ export const Modal = props => {
 
 	function guardar() {
 		let newContact ={
-			name:name,
+			full_name:full_name,
 			email:email,
 			phone:address,
 			address:address,
@@ -49,10 +49,10 @@ export const Modal = props => {
 		if (props.index == -1) {
 			//Crear nuevo contacto
 			actions.addContact(newContact)
-			setAddress("")
-			setPhone("")
-			setEmail("")
-			setName("")
+			// setAddress("")
+			// setPhone("")
+			// setEmail("")
+			// setName("")
 		}
 		else if (props.index >= 0) {
 			// Editar contacto
@@ -88,7 +88,7 @@ export const Modal = props => {
 								<div className="mb-3">
 									<label htmlFor="nameInput" className="form-label">Full Name</label>
 									<input type="text" className="form-control" id="nameInput" placeholder="Full Name"
-										value={name}
+										value={full_name}
 										onChange={(e) => setName(e.target.value)} />
 								</div>
 
@@ -136,7 +136,7 @@ Modal.propTypes = {
 	onClose: PropTypes.func,
 	show: PropTypes.bool,
 	edit: PropTypes.func,
-	index: PropTypes.number
+	index: PropTypes.string
 };
 
 /**

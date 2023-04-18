@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { ContactCard } from "../component/ContactCard";
@@ -9,7 +9,9 @@ export const Home = () => {
 
 	const { store, actions } = useContext(Context)
 	const { contacts } = store
-
+	useEffect(() => {
+		actions.getAgenda()
+	},[])
 
 	return (
 
@@ -18,20 +20,19 @@ export const Home = () => {
 			<div className="list-group contact-list">
 				{contacts.map((contact, index) =>
 					<div key={index}>
-					<ContactCard
-						img={contact.img}
-						name={contact.name}
-						address={contact.address}
-						email={contact.email}
-						phone={contact.phone}
-						onDelete={() => actions.delContact(index)}
-						// edit={() => actions.editContact(index)}
-						index={index}
-						
-					/>
-					<Modal index={index} />
+						<ContactCard
+							img={contact.img}
+							full_name={contact.full_name}
+							address={contact.address}
+							email={contact.email}
+							phone={contact.phone}
+							onDelete={() => actions.delContact(index)}
+							index={contact.id}
+
+						/>
+						<Modal index={contact.id} />
 					</div>
-					)}
+				)}
 			</div>
 		</div>
 	)
