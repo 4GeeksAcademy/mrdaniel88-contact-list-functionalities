@@ -64,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let index=newContacts.findIndex(contact=>contact.id==id)
 					console.log(obj);
 					newContacts[index] = { ...obj, img: rigoImage };
-					setStore({contacts: newContacts});
+					setStore({...getStore(), contacts: newContacts});
 				}
 				else{
 					console.error(response.status+": "+response.statusText)
