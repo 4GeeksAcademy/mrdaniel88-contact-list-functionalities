@@ -26,7 +26,7 @@ export const Home = () => {
 							address={contact.address}
 							email={contact.email}
 							phone={contact.phone}
-							onDelete={() => actions.delContact(index)}
+							onDelete={() => actions.delContact(contact.id)}
 							index={contact.id}
 
 						/>

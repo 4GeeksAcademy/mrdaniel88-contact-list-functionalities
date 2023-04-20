@@ -7,17 +7,12 @@ import { Context } from "../store/appContext";
 export const Modal = props => {
 
 	const { store, actions } = useContext(Context)
-	// const [name, setName] = useState(store.contacts[props.index]?.name)
-	// const [email, setEmail] = useState(store.contacts[props.index]?.email)
-	// const [phone, setPhone] = useState(store.contacts[props.index]?.phone)
-	// const [address, setAddress] = useState(store.contacts[props.index]?.address)
-	// const [img, setImg] = useState(store.contacts[props.index]?.img)
 
 	const [full_name, setName] = useState("")
 	const [email, setEmail] = useState("")
 	const [phone, setPhone] = useState("")
 	const [address, setAddress] = useState("")
-	const [img, setImg] = useState(store.contacts[props.index]?.img)
+	//const [img, setImg] = useState(store.contacts[props.index]?.img)
 
 	useEffect(() => {
 		if (props.index == -1) {
@@ -42,7 +37,7 @@ export const Modal = props => {
 		let newContact ={
 			full_name:full_name,
 			email:email,
-			phone:address,
+			phone:phone,
 			address:address,
 			
 		}
@@ -62,6 +57,10 @@ export const Modal = props => {
 			// Indice invalido
 		}
 	}
+
+	// function deleteContact() {
+	// 	let contactToDelete = contacts.find(contact => contact.id == index)
+	// }
 
 	return (
 		<div className="modal fade" id={"editModal-" + props.index} tabIndex="-1" aria-labelledby={"exampleModalLabel-" + props.index} aria-hidden="true">
