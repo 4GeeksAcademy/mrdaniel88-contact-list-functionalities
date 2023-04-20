@@ -15,7 +15,7 @@ export const Navbar = () => {
 			<div className="ml-auto">
 			<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#editModal-"+-1} >Add contact</button>
 			</div>
-			<Modal index={-1} />
+			<Modal index={(-1).toString()} />
 		</nav>
 	);
 };

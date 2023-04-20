@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
+import rigoImage from "../../img/rigo-baby.jpg";
 
 
 export const Modal = props => {
@@ -12,7 +13,7 @@ export const Modal = props => {
 	const [email, setEmail] = useState("")
 	const [phone, setPhone] = useState("")
 	const [address, setAddress] = useState("")
-	//const [img, setImg] = useState(store.contacts[props.index]?.img)
+	const [img, setImg] = useState(rigoImage)
 
 	useEffect(() => {
 		if (props.index == -1) {
@@ -20,6 +21,7 @@ export const Modal = props => {
 		}
 		else if (props.index >= 0) {
 			// Editar contacto
+			// setImg(img)
 			let updateContact = store.contacts.find(contact=>contact.id==props.index)
 			setAddress(updateContact.address)
 			setPhone(updateContact.phone)
@@ -44,10 +46,10 @@ export const Modal = props => {
 		if (props.index == -1) {
 			//Crear nuevo contacto
 			actions.addContact(newContact)
-			// setAddress("")
-			// setPhone("")
-			// setEmail("")
-			// setName("")
+			setAddress("")
+			setPhone("")
+			setEmail("")
+			setName("")
 		}
 		else if (props.index >= 0) {
 			// Editar contacto

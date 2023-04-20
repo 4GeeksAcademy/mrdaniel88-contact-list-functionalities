@@ -53,16 +53,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).catch(err=>console.error(err)) */
 				
 			},
-			editContact: (index, obj) => {
-				console.log(index)
-				console.log(obj)
-				let store = getStore()
-				let arrTemp = [...store.contacts];
-
-				arrTemp[index] = { ...obj, img: rigoImage };
-				setStore({ ...store, contacts: arrTemp });
-
-
+			editContact:async (id, obj) => {
+				let response = await fetch(apiUrl+"/"+id,{
+					body: JSON.stringify({... obj, agenda_slug: agendaSlug}),
+					method:"PUT",
+					headers: { "Content-Type": "application/json" }
+				})
+				if (response.ok) {
+					let newContacts=[...getStore().contacts]
+					let index=newContacts.findIndex(contact=>contact.id==id)
+					console.log(obj);
+					newContacts[index] = { ...obj, img: rigoImage };
+					setStore({contacts: newContacts});
+				}
+				else{
+					console.error(response.status+": "+response.statusText)
+				}
+				
+				/* fetch(apiUrl+"/"+id,{
+					body: JSON.stringify({... obj, agenda_slug: agendaSlug}),
+					method:"PUT",
+					headers: { "Content-Type": "application/json" }
+				}).then(response=>{
+					if (response.ok) {
+						let newContacts=[...getStore().contacts]
+						let index=newContacts.findIndex(contact=>contact.id==id)
+						newContacts[index] = { ...obj, img: rigoImage };
+						setStore({ ...store, contacts: newContacts});
+					}
+					else{
+						console.error(response.status+": "+response.statusText)
+					}
+				}).catch(err=>console.error(err)) */
+				
 			},
 			getAgenda: () => {
 				fetch(apiUrl + "/agenda/" + agendaSlug)

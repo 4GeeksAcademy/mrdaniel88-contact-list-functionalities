@@ -21,14 +21,13 @@ export const Home = () => {
 				{contacts.map((contact, index) =>
 					<div key={index}>
 						<ContactCard
-							img={contact.img}
+							img={rigoImage}
 							full_name={contact.full_name}
 							address={contact.address}
 							email={contact.email}
 							phone={contact.phone}
 							onDelete={() => actions.delContact(contact.id)}
 							index={contact.id}
-
 						/>
 						<Modal index={contact.id} />
 					</div>

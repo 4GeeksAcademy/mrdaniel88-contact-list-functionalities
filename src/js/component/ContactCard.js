@@ -5,21 +5,8 @@ import { Modal } from "./Modal";
 
 
 export const ContactCard = props => {
-	const [state, setState] = useState({
-		//initialize state here
-	});
+	
 
-	// Handles open and close modal to edit contact
-    const [showModal, setShowModal] = useState(false);
-
-    const handleShowModal = () => {
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
-// console.log(props.index);
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
